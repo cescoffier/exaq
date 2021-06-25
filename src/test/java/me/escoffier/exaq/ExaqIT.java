@@ -12,6 +12,7 @@ class ExaqIT {
     @Test
     public void test() throws IOException, InterruptedException, TimeoutException {
         String exec = System.getProperty("native.image.path");
+        System.out.println("Executing " + exec);
         System.out.println(new ProcessExecutor().command(exec, "-la")
                 .readOutput(true).execute()
                 .getOutput().getString()

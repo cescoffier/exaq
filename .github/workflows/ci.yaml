@@ -8,16 +8,17 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        gu-binary: [gu, gu.cmd]
-        exclude:
+        include:
           - os: ubuntu-latest
-            gu-binary: gu.cmd
-          - os: macos-latest
-            gu-binary: gu.cmd
-          - os: windows-latest
             gu-binary: gu
+            suffix: linux
+          - os: macos-latest
+            gu-binary: gu
+            suffix: macos
+          - os: windows-latest
+            gu-binary: gu.cmd
+            suffix: win
     steps:
-
       - uses: ilammy/msvc-dev-cmd@v1
         name: Setup windows environment if needed
       - name: Setup Graalvm
@@ -42,5 +43,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: exaq
+          name: exaq-${{ matrix.suffix }}
           path: target/*-runner
