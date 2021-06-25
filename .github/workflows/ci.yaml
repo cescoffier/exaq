@@ -18,6 +18,8 @@ jobs:
             gu-binary: gu
     steps:
 
+      - uses: ilammy/msvc-dev-cmd@v1
+        name: Setup windows environment if needed
       - name: Setup Graalvm
         id: setup-graalvm
         uses: DeLaGuardo/setup-graalvm@master
