@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
+        suffix: [linux, macos, windows]
         gu-binary: [gu, gu.cmd]
         exclude:
           - os: ubuntu-latest
@@ -39,3 +40,8 @@ jobs:
           java-version: '11'
       - name: Build with Maven
         run: mvn --batch-mode verify -Dnative
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: exaq-${matrix.sufffix}
+          path: target/*-runner
