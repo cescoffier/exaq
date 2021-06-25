@@ -44,4 +44,6 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: exaq-${{ matrix.suffix }}
-          path: target/*-runner
+          path: |
+            target/*-runner
+            target\*-runner
